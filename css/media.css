@@ -1,0 +1,53 @@
+@media (max-width: 890px) {
+
+  .header__inp {
+    width: 400px;
+  }
+
+  .table__cell_time {
+    display: block;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  #table-edit {
+    min-width: 100%;
+  }
+
+
+  .table__btn-edit {
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+
+}
+
+@media (max-width: 750px) {
+
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .table__btn-edit {
+    display: flex;
+  }
+
+}
+
+@media (max-width: 590px) {
+  .header__container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .header__inp {
+    width: 250px;
+  }
+
+  .modal__container {
+    width: 300px;
+  }
+}

@@ -13,7 +13,6 @@ body {
   font-weight: 400;
   font-size: 14px;
   background: #f5f5f5;
-  ;
 }
 
 .container {
@@ -37,13 +36,12 @@ p {
 a {
   color: inherit;
   text-decoration: none;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 img {
   max-width: 100%;
 }
-
 
 ul {
   margin: 0;
@@ -52,7 +50,7 @@ ul {
 }
 
 svg {
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 button {
@@ -61,7 +59,7 @@ button {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .hidden_on {
@@ -101,7 +99,7 @@ button {
 .ldio-926xwajvp8h div {
   animation: ldio-926xwajvp8h 1s linear infinite;
   top: 50px;
-  left: 50px
+  left: 50px;
 }
 
 .loadingio-spinner-rolling-lkr747ojqjs {
@@ -125,8 +123,6 @@ button {
   box-sizing: content-box;
 }
 
-
-
 :root {
   --white: #fff;
   --green: #34c759;
@@ -147,11 +143,11 @@ button {
 /* Эффекты */
 
 .header__search:focus {
-  outline: 1px solid var(--firm)
+  outline: 1px solid var(--firm);
 }
 
 .header__search:hover {
-  outline: 1px solid var(--firm)
+  outline: 1px solid var(--firm);
 }
 
 .header__inp:focus-visible {
@@ -276,7 +272,6 @@ button {
   font-weight: 400;
 }
 
-
 .btn:hover {
   outline: 1px solid var(--firm);
   color: var(--firm);
@@ -307,15 +302,14 @@ button {
   width: 100%;
   height: 100vh;
   z-index: 999;
-  background-color: rgba(0, 0, 0, .3);
+  background-color: rgba(0, 0, 0, 0.3);
   overflow-y: auto;
-  animation: showBlock .5s forwards;
+  animation: showBlock 0.5s forwards;
 }
 
 @keyframes showBlock {
   0% {
     opacity: 0;
-
   }
 
   100% {
@@ -355,7 +349,7 @@ button {
   top: 15px;
   right: 15px;
   font-size: 22px;
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .modal__close-x:hover {
@@ -429,10 +423,10 @@ button {
 
 .choices {
   margin-bottom: 0;
-  width: 123px
+  width: 123px;
 }
 
-.choices[data-type*=select-one]:after {
+.choices[data-type*="select-one"]:after {
   height: 8px;
   width: 8px;
   z-index: 3;
@@ -442,7 +436,7 @@ button {
   transform: rotate(-45deg);
 }
 
-.choices[data-type*=select-one].is-open:after {
+.choices[data-type*="select-one"].is-open:after {
   top: 60%;
   border: 1px solid var(--firm);
   border-width: 1px 1px 0 0;
@@ -489,7 +483,7 @@ button {
   max-width: 255px;
   font-size: 10px;
   text-align: center;
-  color: var(--dangerred)
+  color: var(--dangerred);
 }
 
 .modal__btn-add {
@@ -527,7 +521,8 @@ button {
 /* main */
 .header {
   padding: 20px 0;
-  box-shadow: 0 3px 6px 0 rgba(176, 190, 197, 0.32), 0 9px 27px 0 rgba(176, 190, 197, 0.32);
+  box-shadow: 0 3px 6px 0 rgba(176, 190, 197, 0.32),
+    0 9px 27px 0 rgba(176, 190, 197, 0.32);
 }
 
 .header__container {
@@ -550,14 +545,13 @@ button {
 .header__inp {
   padding: 12px 16px;
   width: 581px;
-  border: none
+  border: none;
 }
 
 .header__form-btn {
   font-size: 16px;
   background-color: var(--white);
 }
-
 
 .main__title {
   margin: 40px 0 15px;
@@ -603,7 +597,6 @@ button {
   color: var(--txt-grey);
 }
 
-
 .table__cell_сreated {
   min-width: 100px;
   max-width: 150px;
@@ -638,7 +631,6 @@ button {
 .table__tooltip:not(:last-child) {
   margin-right: 7px;
 }
-
 
 .table__tooltip svg {
   fill: var(--firm);
@@ -685,4 +677,16 @@ button {
 
 .footer {
   padding: 50px 0;
+}
+
+.choices__list--dropdown,
+.choices__list[aria-expanded] {
+  z-index: 4;
+}
+
+.no-clients {
+  padding-top: 50px;
+  height: 150px;
+  background-color: white;
+  font-size: 24px;
 }

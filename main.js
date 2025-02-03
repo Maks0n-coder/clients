@@ -11,7 +11,7 @@ import {
 } from "./svg.js";
 import { modalClientsDel } from "./modal-del.js";
 
-const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = "https://clients-maks0n.amvera.io";  /* http://localhost:3000 */
 
 let clients = [];
 let contacts = [];

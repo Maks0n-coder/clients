@@ -12,7 +12,7 @@ import {
 import { modalClientsDel } from "./modal-del.js";
 
 const SERVER_URL =
-  "http://localhost:3000"; /* "https://clients-maks0n.amvera.io"; */ /* http://localhost:3000 */
+  "https://clients-maks0n.amvera.io"; /* http://localhost:3000 */
 
 let clients = [];
 let contacts = [];
@@ -55,7 +55,7 @@ async function serverGet() {
 
 // Функция получения с сервера id
 async function serverGetId(id) {
-  const response = await fetch(SERVER_URL + "/api/clients" + id, {
+  const response = await fetch(SERVER_URL + "/api/clients/" + id, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });

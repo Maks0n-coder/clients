@@ -11,7 +11,8 @@ import {
 } from "./svg.js";
 import { modalClientsDel } from "./modal-del.js";
 
-const SERVER_URL = "https://clients-maks0n.amvera.io";  /* http://localhost:3000 */
+const SERVER_URL =
+  "http://localhost:3000"; /* "https://clients-maks0n.amvera.io"; */ /* http://localhost:3000 */
 
 let clients = [];
 let contacts = [];
@@ -38,12 +39,18 @@ async function serverPost(clients) {
 
 // Функция получения с сервера
 async function serverGet() {
-  const response = await fetch(SERVER_URL + "/api/clients", {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(SERVER_URL + "/api/clients", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await response.json();
+    return data;
+  } catch {
+    noClients("Ошибка сервера попробуете повторить запрос позже");
+  } finally {
+    preloader.classList.add("preloader_hide");
+  }
 }
 
 // Функция получения с сервера id
@@ -79,6 +86,19 @@ export async function serverDelete(id) {
   });
   const data = await response.json();
   return data;
+}
+
+// Нет клиентов
+
+function noClients(text) {
+  const noClientsTr = createEl("tr");
+  const noClientsTh = createEl("th");
+  noClientsTh.colSpan = 6;
+  const noClientsText = createEl("p", "no-clients");
+  noClientsText.textContent = text;
+  tableBody.append(noClientsTr);
+  noClientsTr.append(noClientsTh);
+  noClientsTh.append(noClientsText);
 }
 
 // Дата в нормальном формате
@@ -286,9 +306,9 @@ const modalWindow = (open, close) => {
   // Форма добавления нового клиента
   addForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    let valueName = getUpperCase(inpName);
-    let valueSurname = getUpperCase(inpSurname);
-    let valueLastname = getUpperCase(inpLastname);
+    let valueName = getLowerCase(inpName);
+    let valueSurname = getLowerCase(inpSurname);
+    let valueLastname = getLowerCase(inpLastname);
     let valContacts = document.querySelectorAll(".modal__contacts-dscr");
     let inpContacts = document.querySelector(".modal__contacts-inp");
     let btn = document.querySelector(".btn");
@@ -372,11 +392,8 @@ const addBtn = document
   });
 
 // Создание функции первая буква заглавная
-function getUpperCase(inp) {
-  return (
-    inp.value.trim().substring(0, 1).toUpperCase() +
-    inp.value.trim().substring(1).toLowerCase()
-  );
+function getLowerCase(inp) {
+  return inp.value.trim().toLowerCase();
 }
 
 // Создание функции поля ошибки
@@ -441,7 +458,7 @@ updatedTh.addEventListener("click", () => {
 // Функция фильтра
 function filter(arr, prop, value) {
   return arr.filter(function (student) {
-    if (student[prop].includes(value.trim())) return true;
+    if (student[prop].includes(value.trim().toLowerCase())) return true;
   });
 }
 
@@ -468,6 +485,7 @@ function getClientItem(clientObj) {
   const tableBodyTr = createEl("tr", "table__row-body");
   const tableId = createEl("td", "table__cell");
   const tableFio = createEl("td", "table__cell");
+  tableFio.classList.add("table__fio");
   const tableCreated = createEl("td", "table__cell", "table-created");
   const tableUpdated = createEl("td", "table__cell", "table-updated");
   const tableContacts = createEl("td", "table__cell");
@@ -631,7 +649,14 @@ async function render(copyArray) {
 
   for (let client of copyClients) {
     client.fio =
-      client.surname + " " + client.name + " " + " " + client.lastName;
+      client.surname.substring(0, 1).toUpperCase() +
+      client.surname.substring(1).toLowerCase() +
+      " " +
+      client.name.substring(0, 1).toUpperCase() +
+      client.name.substring(1).toLowerCase() +
+      " " +
+      client.lastName.substring(0, 1).toUpperCase() +
+      client.lastName.substring(1).toLowerCase();
     client.filter =
       client.surname.substring(0).toLowerCase() +
       " " +
@@ -679,16 +704,13 @@ async function render(copyArray) {
 
   // Отсутсвуют клиенты
   if (copyClients.length === 0) {
-    const noClientsTr = createEl("tr")
-    const noClientsTh = createEl("th")
-    noClientsTh.colSpan = 6
-    const noClientsText = createEl("p", "no-clients")
-    noClientsText.textContent = 'Клиенты отсутсвуют'
-    tableBody.append(noClientsTr)
-    noClientsTr.append(noClientsTh)
-    noClientsTh.append(noClientsText)
-   /*  preloader.classList.add("preloader_hide"); */
+    noClients("Клиенты отсутсвуют");
   }
+
+  /*   const tableFio = document.querySelectorAll('.table__fio')
+  tableFio.forEach((fio) => {
+    console.log(fio.textContent);
+  }) */
 }
 
 render(clients);
